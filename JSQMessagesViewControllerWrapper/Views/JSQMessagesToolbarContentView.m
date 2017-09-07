@@ -22,9 +22,6 @@
 
 const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
-const CGFloat kJSQMessagesToolbarContentViewHeightDefault = 50.0f;
-const CGFloat kJSQMessagesToolbarPanelViewHeightDefault = 46.0f;
-
 @interface JSQMessagesToolbarContentView ()
 
 @property (weak, nonatomic) IBOutlet JSQMessagesComposerTextView *textView;
@@ -46,12 +43,10 @@ const CGFloat kJSQMessagesToolbarPanelViewHeightDefault = 46.0f;
 
 @implementation JSQMessagesToolbarContentView
 
-static CGFloat _viewHeight = kJSQMessagesToolbarContentViewHeightDefault + kJSQMessagesToolbarPanelViewHeightDefault;
-
 #pragma mark - Class methods
 
 + (CGFloat)contentViewHeight {
-    return _viewHeight;
+    return 96.0f; //Including origin content view and action view
 }
 
 + (UINib *)nib

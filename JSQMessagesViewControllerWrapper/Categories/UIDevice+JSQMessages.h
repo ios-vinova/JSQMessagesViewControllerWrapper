@@ -16,14 +16,18 @@
 //  Released under an MIT license: http://opensource.org/licenses/MIT
 //
 
-//  ********************************
-//  Special thanks to the localization contributors!
-//
-//  https://github.com/jessesquires/JSQMessagesViewController/issues/237
-//  ********************************
+#import <UIKit/UIKit.h>
 
-"load_earlier_messages" = "Visa tidigare meddelanden";
+@interface UIDevice (JSQMessages)
 
-"send" = "Skicka";
+/**
+ *  @return Whether or not the current device is running a version of iOS before 8.0.
+ */
++ (BOOL)jsq_isCurrentDeviceBeforeiOS8;
 
-"new_message" = "Nytt meddelande";
+/**
+ *  @return Whether or not the current device is running a version of iOS after 9.0.
+ */
++ (BOOL)jsq_isCurrentDeviceAfteriOS9;
+
+@end

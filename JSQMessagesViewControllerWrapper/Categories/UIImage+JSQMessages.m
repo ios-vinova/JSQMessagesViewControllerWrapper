@@ -105,8 +105,4 @@
     return [UIImage jsq_bubbleImageFromBundleWithName:@"pause"];
 }
 
-+ (UIImage *)jsq_shareActionImage
-{
-    return [UIImage jsq_bubbleImageFromBundleWithName:@"share"];
-}
 @end

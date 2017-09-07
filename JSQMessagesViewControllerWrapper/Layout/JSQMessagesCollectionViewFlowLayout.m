@@ -270,7 +270,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
         CGFloat padding = -100.0f;
         CGRect visibleRect = CGRectInset(self.collectionView.bounds, padding, padding);
         
-        NSArray *visibleItems = [[NSArray alloc] initWithArray:[super layoutAttributesForElementsInRect:visibleRect] copyItems:YES];
+        NSArray *visibleItems = [super layoutAttributesForElementsInRect:visibleRect];
         NSSet *visibleItemsIndexPaths = [NSSet setWithArray:[visibleItems valueForKey:NSStringFromSelector(@selector(indexPath))]];
         
         [self jsq_removeNoLongerVisibleBehaviorsFromVisibleItemsIndexPaths:visibleItemsIndexPaths];
@@ -281,7 +281,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSArray *attributesInRect = [[NSArray alloc] initWithArray:[super layoutAttributesForElementsInRect:rect] copyItems:YES];
+    NSArray *attributesInRect = [[super layoutAttributesForElementsInRect:rect] copy];
     
     if (self.springinessEnabled) {
         NSMutableArray *attributesInRectCopy = [attributesInRect mutableCopy];
@@ -421,7 +421,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     finalHeight += attributes.cellTopLabelHeight;
     finalHeight += attributes.messageBubbleTopLabelHeight;
     finalHeight += attributes.cellBottomLabelHeight;
-    NSLog(@"%f", self.itemWidth);
+    
     return CGSizeMake(self.itemWidth, ceilf(finalHeight));
 }
 

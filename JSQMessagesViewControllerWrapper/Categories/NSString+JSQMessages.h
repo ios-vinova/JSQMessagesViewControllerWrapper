@@ -18,8 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface NSString (JSQMessages)
 
 /**
@@ -28,5 +26,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)jsq_stringByTrimingWhitespace;
 
 @end
-
-NS_ASSUME_NONNULL_END

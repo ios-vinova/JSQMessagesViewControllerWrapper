@@ -123,6 +123,4 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingD
 
 @property (weak, nonatomic) UIView *panelView;
 
-+ (CGFloat)contentViewHeight;
-
 @end

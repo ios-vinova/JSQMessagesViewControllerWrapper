@@ -24,6 +24,7 @@
 #import "UIImage+JSQMessages.h"
 #import "UIColor+JSQMessages.h"
 
+
 @interface JSQAudioMediaItem ()
 
 @property (strong, nonatomic) UIView *cachedMediaView;
@@ -217,10 +218,12 @@
 
 - (CGSize)mediaViewDisplaySize
 {
-    return CGSizeMake(200.0f, 50.0f);
+    return CGSizeMake(160.0f,
+                      self.audioViewAttributes.controlInsets.top +
+                      self.audioViewAttributes.controlInsets.bottom +
+                      self.audioViewAttributes.playButtonImage.size.height);
 }
 
-#pragma mark - auto layout here
 - (UIView *)mediaView
 {
     if (self.audioData && self.cachedMediaView == nil) {
@@ -244,12 +247,13 @@
         UIView * playView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
         playView.backgroundColor = self.audioViewAttributes.backgroundColor;
         playView.contentMode = UIViewContentModeCenter;
-        [playView.layer setCornerRadius:4];
-        [playView.layer setBorderWidth:1];
-        //playView.clipsToBounds = YES;
+        playView.clipsToBounds = YES;
 
         // create the play button
-        CGRect buttonFrame = CGRectMake(8, 10, 30, 30);
+        CGRect buttonFrame = CGRectMake(leftInset,
+                                        self.audioViewAttributes.controlInsets.top,
+                                        self.audioViewAttributes.playButtonImage.size.width,
+                                        self.audioViewAttributes.playButtonImage.size.height);
         
         self.playButton = [[UIButton alloc] initWithFrame:buttonFrame];
         [self.playButton setImage:self.audioViewAttributes.playButtonImage forState:UIControlStateNormal];
@@ -264,18 +268,19 @@
 
         // this is cheesy, but it centers the progress bar without extra space and
         // without causing it to wiggle from side to side as the label text changes
-        CGSize labelSize = CGSizeMake(36, 14);
+        CGSize labelSize = CGSizeMake(36, 18);
         if ([durationString length] < 4) {
-            labelSize = CGSizeMake(18, 14);
+            labelSize = CGSizeMake(18,18);
         }
         else if ([durationString length] < 5) {
-            labelSize = CGSizeMake(24, 14);
+            labelSize = CGSizeMake(24,18);
         }
         else if ([durationString length] < 6) {
-            labelSize = CGSizeMake(30, 14);
+            labelSize = CGSizeMake(30, 18);
         }
 
-        CGRect labelFrame = CGRectMake(size.width - labelSize.width - rightInset, 4, labelSize.width, labelSize.height);
+        CGRect labelFrame = CGRectMake(size.width - labelSize.width - rightInset,
+                                       self.audioViewAttributes.controlInsets.top, labelSize.width, labelSize.height);
         self.progressLabel = [[UILabel alloc] initWithFrame:labelFrame];
         self.progressLabel.textAlignment = NSTextAlignmentLeft;
         self.progressLabel.adjustsFontSizeToFitWidth = YES;
@@ -286,7 +291,7 @@
         // sizeToFit adjusts the frame's height to the font
         [self.progressLabel sizeToFit];
         labelFrame.origin.x = size.width - self.progressLabel.frame.size.width - rightInset;
-        labelFrame.origin.y = 6; // Aligh label to the top
+        labelFrame.origin.y =  ((size.height - self.progressLabel.frame.size.height) / 2);
         labelFrame.size.width = self.progressLabel.frame.size.width;
         labelFrame.size.height =  self.progressLabel.frame.size.height;
         self.progressLabel.frame = labelFrame;
@@ -295,10 +300,10 @@
 
         // create a progress bar
         self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-        CGFloat xOffset = 8 + 30 + 4; // left padding - play width - spacing - right padding
-        CGFloat yOffset = (size.height - self.progressView.frame.size.height) / 2;
-        CGFloat width = size.width - xOffset - rightInset;
-        self.progressView.frame = CGRectMake(xOffset, yOffset, width, self.progressView.frame.size.height);
+        CGFloat xOffset = self.playButton.frame.origin.x + self.playButton.frame.size.width + self.audioViewAttributes.controlPadding;
+        CGFloat width = labelFrame.origin.x - xOffset - self.audioViewAttributes.controlPadding;
+        self.progressView.frame = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2,
+                                             width, self.progressView.frame.size.height);
         self.progressView.tintColor = self.audioViewAttributes.tintColor;
         [playView addSubview:self.progressView];
 
