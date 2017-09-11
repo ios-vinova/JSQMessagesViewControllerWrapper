@@ -218,10 +218,7 @@
 
 - (CGSize)mediaViewDisplaySize
 {
-    return CGSizeMake(160.0f,
-                      self.audioViewAttributes.controlInsets.top +
-                      self.audioViewAttributes.controlInsets.bottom +
-                      self.audioViewAttributes.playButtonImage.size.height);
+    return CGSizeMake(160.0f, 50.0f); //FIXME: 2/3 width instead
 }
 
 - (UIView *)mediaView
@@ -232,6 +229,8 @@
             self.audioPlayer.delegate = self;
         }
 
+        UIColor *appColor = [UIColor colorWithRed:(137/255.f) green:(79/255.f) blue:(191/255.f) alpha:1];
+        
         // reverse the insets based on the message direction
         CGFloat leftInset, rightInset;
         if (self.appliesMediaViewMaskAsOutgoing) {
@@ -245,13 +244,13 @@
         // create container view for the various controls
         CGSize size = [self mediaViewDisplaySize];
         UIView * playView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
-        playView.backgroundColor = self.audioViewAttributes.backgroundColor;
-        playView.contentMode = UIViewContentModeCenter;
-        playView.clipsToBounds = YES;
+        playView.backgroundColor    = self.audioViewAttributes.backgroundColor;
+        playView.contentMode        = UIViewContentModeCenter;
+        playView.clipsToBounds      = YES;
 
         // create the play button
-        CGRect buttonFrame = CGRectMake(leftInset,
-                                        self.audioViewAttributes.controlInsets.top,
+        CGRect buttonFrame = CGRectMake(leftInset + 4,
+                                        (size.height - self.audioViewAttributes.playButtonImage.size.height) / 2,
                                         self.audioViewAttributes.playButtonImage.size.width,
                                         self.audioViewAttributes.playButtonImage.size.height);
         
@@ -264,44 +263,34 @@
         // create a label to show the duration / elapsed time
         NSString *durationString = [self timestampString:self.audioPlayer.duration
                                              forDuration:self.audioPlayer.duration];
-        NSString *maxWidthString = [@"" stringByPaddingToLength:[durationString length] withString:@"0" startingAtIndex:0];
+//        NSString *maxWidthString = [@"" stringByPaddingToLength:[durationString length] withString:@"0" startingAtIndex:0];
 
         // this is cheesy, but it centers the progress bar without extra space and
         // without causing it to wiggle from side to side as the label text changes
-        CGSize labelSize = CGSizeMake(36, 18);
-        if ([durationString length] < 4) {
-            labelSize = CGSizeMake(18,18);
-        }
-        else if ([durationString length] < 5) {
-            labelSize = CGSizeMake(24,18);
-        }
-        else if ([durationString length] < 6) {
-            labelSize = CGSizeMake(30, 18);
-        }
+        CGSize labelSize = CGSizeMake(36, 14);
 
-        CGRect labelFrame = CGRectMake(size.width - labelSize.width - rightInset,
-                                       self.audioViewAttributes.controlInsets.top, labelSize.width, labelSize.height);
-        self.progressLabel = [[UILabel alloc] initWithFrame:labelFrame];
-        self.progressLabel.textAlignment = NSTextAlignmentLeft;
-        self.progressLabel.adjustsFontSizeToFitWidth = YES;
-        self.progressLabel.textColor = self.audioViewAttributes.tintColor;
-        self.progressLabel.font = self.audioViewAttributes.labelFont;
-        self.progressLabel.text = maxWidthString;
+        CGRect labelFrame = CGRectMake(size.width - labelSize.width - rightInset, self.audioViewAttributes.controlInsets.top, labelSize.width, labelSize.height);
+        self.progressLabel                  = [[UILabel alloc] initWithFrame:labelFrame];
+        self.progressLabel.textAlignment    = NSTextAlignmentRight;
+        self.progressLabel.textColor        = appColor;
+        self.progressLabel.font             = self.audioViewAttributes.labelFont;
+//        self.progressLabel.text = maxWidthString;
 
         // sizeToFit adjusts the frame's height to the font
-        [self.progressLabel sizeToFit];
-        labelFrame.origin.x = size.width - self.progressLabel.frame.size.width - rightInset;
-        labelFrame.origin.y =  ((size.height - self.progressLabel.frame.size.height) / 2);
-        labelFrame.size.width = self.progressLabel.frame.size.width;
-        labelFrame.size.height =  self.progressLabel.frame.size.height;
-        self.progressLabel.frame = labelFrame;
+//        [self.progressLabel sizeToFit];
+//        labelFrame.origin.x = size.width - self.progressLabel.frame.size.width - rightInset;
+//        labelFrame.origin.y =  ((size.height - self.progressLabel.frame.size.height) / 2);
+//        labelFrame.size.width = self.progressLabel.frame.size.width;
+//        labelFrame.size.height =  self.progressLabel.frame.size.height;
+//        self.progressLabel.frame = labelFrame;
         self.progressLabel.text = durationString;
         [playView addSubview:self.progressLabel];
 
         // create a progress bar
-        self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-        CGFloat xOffset = self.playButton.frame.origin.x + self.playButton.frame.size.width + self.audioViewAttributes.controlPadding;
-        CGFloat width = labelFrame.origin.x - xOffset - self.audioViewAttributes.controlPadding;
+        self.progressView   = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+        CGFloat xOffset     = self.playButton.frame.origin.x + self.playButton.frame.size.width + self.audioViewAttributes.controlPadding;
+        CGFloat width       = size.width - xOffset - rightInset;
+//        CGFloat width = labelFrame.origin.x - xOffset - self.audioViewAttributes.controlPadding;
         self.progressView.frame = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2,
                                              width, self.progressView.frame.size.height);
         self.progressView.tintColor = self.audioViewAttributes.tintColor;

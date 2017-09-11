@@ -63,8 +63,8 @@
     | AVAudioSessionCategoryOptionDefaultToSpeaker
     | AVAudioSessionCategoryOptionAllowBluetooth;
 
-    return [self initWithPlayButtonImage:[[UIImage jsq_defaultPlayImage] jsq_imageMaskedWithColor:tintColor]
-                        pauseButtonImage:[[UIImage jsq_defaultPauseImage] jsq_imageMaskedWithColor:tintColor]
+    return [self initWithPlayButtonImage:[[UIImage imageNamed:@"play"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                        pauseButtonImage:[[UIImage imageNamed:@"pause"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                labelFont:[UIFont systemFontOfSize:12]
                    showFractionalSecodns:NO
                          backgroundColor:[UIColor jsq_messageBubbleLightGrayColor]
