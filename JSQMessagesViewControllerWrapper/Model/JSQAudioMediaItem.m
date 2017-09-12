@@ -218,7 +218,8 @@
 
 - (CGSize)mediaViewDisplaySize
 {
-    return CGSizeMake(160.0f, 50.0f); //FIXME: 2/3 width instead
+    CGSize _size = [super mediaViewDisplaySize];
+    return CGSizeMake(_size.width, 50.0f);
 }
 
 - (UIView *)mediaView
