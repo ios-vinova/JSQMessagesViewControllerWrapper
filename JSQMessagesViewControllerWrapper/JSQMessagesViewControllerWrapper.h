@@ -87,7 +87,7 @@ FOUNDATION_EXPORT const unsigned char JSQMessagesViewControllerWrapperVersionStr
 #import "JSQMessagesMediaViewBubbleImageMasker.h"
 #import "JSQMessagesTimestampFormatter.h"
 #import "JSQMessagesToolbarButtonFactory.h"
-
+#import "JSQMessagesMediaPlaceholderView.h"
 //  Categories
 #import "JSQSystemSoundPlayer+JSQMessages.h"
 #import "NSString+JSQMessages.h"

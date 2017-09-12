@@ -261,28 +261,14 @@
         [playView addSubview:self.playButton];
 
         // create a label to show the duration / elapsed time
-        NSString *durationString = [self timestampString:self.audioPlayer.duration
-                                             forDuration:self.audioPlayer.duration];
-//        NSString *maxWidthString = [@"" stringByPaddingToLength:[durationString length] withString:@"0" startingAtIndex:0];
-
-        // this is cheesy, but it centers the progress bar without extra space and
-        // without causing it to wiggle from side to side as the label text changes
+        NSString *durationString = [self timestampString:self.audioPlayer.duration forDuration:self.audioPlayer.duration];
+        
         CGSize labelSize = CGSizeMake(36, 14);
-
         CGRect labelFrame = CGRectMake(size.width - labelSize.width - rightInset, self.audioViewAttributes.controlInsets.top, labelSize.width, labelSize.height);
         self.progressLabel                  = [[UILabel alloc] initWithFrame:labelFrame];
         self.progressLabel.textAlignment    = NSTextAlignmentRight;
         self.progressLabel.textColor        = appColor;
         self.progressLabel.font             = self.audioViewAttributes.labelFont;
-//        self.progressLabel.text = maxWidthString;
-
-        // sizeToFit adjusts the frame's height to the font
-//        [self.progressLabel sizeToFit];
-//        labelFrame.origin.x = size.width - self.progressLabel.frame.size.width - rightInset;
-//        labelFrame.origin.y =  ((size.height - self.progressLabel.frame.size.height) / 2);
-//        labelFrame.size.width = self.progressLabel.frame.size.width;
-//        labelFrame.size.height =  self.progressLabel.frame.size.height;
-//        self.progressLabel.frame = labelFrame;
         self.progressLabel.text = durationString;
         [playView addSubview:self.progressLabel];
 
@@ -290,7 +276,6 @@
         self.progressView   = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
         CGFloat xOffset     = self.playButton.frame.origin.x + self.playButton.frame.size.width + self.audioViewAttributes.controlPadding;
         CGFloat width       = size.width - xOffset - rightInset;
-//        CGFloat width = labelFrame.origin.x - xOffset - self.audioViewAttributes.controlPadding;
         self.progressView.frame = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2,
                                              width, self.progressView.frame.size.height);
         self.progressView.tintColor = appColor;
