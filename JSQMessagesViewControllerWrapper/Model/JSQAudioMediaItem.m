@@ -237,8 +237,8 @@
             leftInset = self.audioViewAttributes.controlInsets.left;
             rightInset = self.audioViewAttributes.controlInsets.right;
         } else {
-            leftInset = self.audioViewAttributes.controlInsets.right;
-            rightInset = self.audioViewAttributes.controlInsets.left;
+            leftInset = self.audioViewAttributes.controlInsets.right - 4;
+            rightInset = self.audioViewAttributes.controlInsets.left + 4;
         }
         
         // create container view for the various controls
