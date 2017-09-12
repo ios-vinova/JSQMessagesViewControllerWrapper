@@ -234,16 +234,16 @@
         // reverse the insets based on the message direction
         CGFloat leftInset, rightInset;
         if (self.appliesMediaViewMaskAsOutgoing) {
-            leftInset = self.audioViewAttributes.controlInsets.left;
-            rightInset = self.audioViewAttributes.controlInsets.right;
+            leftInset   = self.audioViewAttributes.controlInsets.left;
+            rightInset  = self.audioViewAttributes.controlInsets.right;
         } else {
-            leftInset = self.audioViewAttributes.controlInsets.right - 4;
-            rightInset = self.audioViewAttributes.controlInsets.left + 4;
+            leftInset   = self.audioViewAttributes.controlInsets.right - 4;
+            rightInset  = self.audioViewAttributes.controlInsets.left + 4;
         }
         
         // create container view for the various controls
-        CGSize size = [self mediaViewDisplaySize];
-        UIView * playView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
+        CGSize size                 = [self mediaViewDisplaySize];
+        UIView * playView           = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
         playView.backgroundColor    = self.audioViewAttributes.backgroundColor;
         playView.contentMode        = UIViewContentModeCenter;
         playView.clipsToBounds      = YES;
@@ -263,8 +263,8 @@
         // create a label to show the duration / elapsed time
         NSString *durationString = [self timestampString:self.audioPlayer.duration forDuration:self.audioPlayer.duration];
         
-        CGSize labelSize = CGSizeMake(36, 14);
-        CGRect labelFrame = CGRectMake(size.width - labelSize.width - rightInset, self.audioViewAttributes.controlInsets.top, labelSize.width, labelSize.height);
+        CGSize labelSize    = CGSizeMake(36, 14);
+        CGRect labelFrame   = CGRectMake(size.width - labelSize.width - rightInset, self.audioViewAttributes.controlInsets.top, labelSize.width, labelSize.height);
         self.progressLabel                  = [[UILabel alloc] initWithFrame:labelFrame];
         self.progressLabel.textAlignment    = NSTextAlignmentRight;
         self.progressLabel.textColor        = appColor;
