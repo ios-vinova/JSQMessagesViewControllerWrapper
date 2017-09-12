@@ -277,7 +277,7 @@
         CGFloat width       = size.width - xOffset - rightInset;
         self.progressView.frame = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2,
                                              width, self.progressView.frame.size.height);
-        self.progressView.tintColor = self.audioViewAttributes.tintColor;
+        self.progressView.tintColor = self.audioViewAttributes.progressBarColor;
         [playView addSubview:self.progressView];
 
         [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:playView isOutgoing:self.appliesMediaViewMaskAsOutgoing];

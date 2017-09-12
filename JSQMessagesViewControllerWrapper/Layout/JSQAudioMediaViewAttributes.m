@@ -29,6 +29,7 @@
                   showFractionalSecodns:(BOOL)showFractionalSeconds
                         backgroundColor:(UIColor *)backgroundColor
                               tintColor:(UIColor *)tintColor
+                       progressBarColor:(UIColor *)progressBarColor
                           controlInsets:(UIEdgeInsets)controlInsets
                          controlPadding:(CGFloat)controlPadding
                           audioCategory:(NSString *)audioCategory
@@ -42,16 +43,17 @@
 
     self = [super init];
     if (self) {
-        _playButtonImage = playButtonImage;
-        _pauseButtonImage = pauseButtonImage;
-        _labelFont = labelFont;
-        _showFractionalSeconds = showFractionalSeconds;
-        _backgroundColor = backgroundColor;
-        _tintColor = tintColor;
-        _controlInsets = controlInsets;
-        _controlPadding = controlPadding;
-        _audioCategory = audioCategory;
-        _audioCategoryOptions = audioCategoryOptions;
+        _playButtonImage        = playButtonImage;
+        _pauseButtonImage       = pauseButtonImage;
+        _labelFont              = labelFont;
+        _showFractionalSeconds  = showFractionalSeconds;
+        _backgroundColor        = backgroundColor;
+        _tintColor              = tintColor;
+        _progressBarColor       = progressBarColor;
+        _controlInsets          = controlInsets;
+        _controlPadding         = controlPadding;
+        _audioCategory          = audioCategory;
+        _audioCategoryOptions   = audioCategoryOptions;
     }
     return self;
 }
@@ -69,6 +71,7 @@
                    showFractionalSecodns:NO
                          backgroundColor:[UIColor jsq_messageBubbleLightGrayColor]
                                tintColor:tintColor
+                        progressBarColor:tintColor
                            controlInsets:UIEdgeInsetsMake(6, 6, 6, 18)
                           controlPadding:6
                            audioCategory:@"AVAudioSessionCategoryPlayback"

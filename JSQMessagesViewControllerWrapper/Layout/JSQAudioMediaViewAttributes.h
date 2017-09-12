@@ -59,6 +59,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *tintColor;
 
 /**
+ *  The tint color for the player.
+ */
+@property (nonatomic, strong) UIColor *progressBarColor;
+
+/**
  *  Insets that sepcify the padding around the play/pause button and time label.
  */
 @property (nonatomic, assign) UIEdgeInsets controlInsets;
@@ -100,6 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
                   showFractionalSecodns:(BOOL)showFractionalSeconds
                         backgroundColor:(UIColor *)backgroundColor
                               tintColor:(UIColor *)tintColor
+                       progressBarColor:(UIColor *)progressBarColor
                           controlInsets:(UIEdgeInsets)controlInsets
                          controlPadding:(CGFloat)controlPadding
                           audioCategory:(NSString *)audioCategory
