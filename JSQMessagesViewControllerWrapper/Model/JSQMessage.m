@@ -82,9 +82,9 @@
 
     self = [super init];
     if (self) {
-        _senderId = [senderId copy];
-        _senderDisplayName = [senderDisplayName copy];
-        _date = [date copy];
+        _senderId           = [senderId copy];
+        _senderDisplayName  = [senderDisplayName copy];
+        _date               = [date copy];
         _isMediaMessage = isMedia;
     }
     return self;

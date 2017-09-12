@@ -556,15 +556,11 @@ JSQMessagesKeyboardControllerDelegate>
     cell.delegate = collectionView;
 
     if (!isMediaMessage) {
-        cell.textView.text = [messageItem text];
-
-        if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
-            //  workaround for iOS 7 textView data detectors bug
+            UIColor *textViewColor = (isOutgoingMessage == true ? [UIColor blackColor] : [UIColor whiteColor]);
             cell.textView.text = nil;
             cell.textView.attributedText = [[NSAttributedString alloc] initWithString:[messageItem text]
-                                                                           attributes:@{ NSFontAttributeName : collectionView.collectionViewLayout.messageBubbleFont }];
-        }
-
+                                                                           attributes:@{NSForegroundColorAttributeName: textViewColor,
+                                                                                        NSFontAttributeName : collectionView.collectionViewLayout.messageBubbleFont }];
         NSParameterAssert(cell.textView.text != nil);
 
         id<JSQMessageBubbleImageDataSource> bubbleImageDataSource = [collectionView.dataSource collectionView:collectionView messageBubbleImageDataForItemAtIndexPath:indexPath];
