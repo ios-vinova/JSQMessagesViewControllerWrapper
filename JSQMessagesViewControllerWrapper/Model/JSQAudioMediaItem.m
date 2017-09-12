@@ -132,8 +132,8 @@
 - (void)updateProgressTimer:(NSTimer *)sender
 {
     if (self.audioPlayer.playing) {
-        self.progressView.progress = self.audioPlayer.currentTime / self.audioPlayer.duration;
-        self.progressLabel.text = [self timestampString:self.audioPlayer.currentTime
+        self.progressView.progress  = self.audioPlayer.currentTime / self.audioPlayer.duration;
+        self.progressLabel.text     = [self timestampString:self.audioPlayer.currentTime
                                             forDuration:self.audioPlayer.duration];
     }
 }
@@ -229,8 +229,6 @@
             self.audioPlayer = [[AVAudioPlayer alloc] initWithData:self.audioData error:nil];
             self.audioPlayer.delegate = self;
         }
-
-        UIColor *appColor = [UIColor colorWithRed:(137/255.f) green:(79/255.f) blue:(191/255.f) alpha:1];
         
         // reverse the insets based on the message direction
         CGFloat leftInset, rightInset;
@@ -268,7 +266,7 @@
         CGRect labelFrame   = CGRectMake(size.width - labelSize.width - rightInset, self.audioViewAttributes.controlInsets.top, labelSize.width, labelSize.height);
         self.progressLabel                  = [[UILabel alloc] initWithFrame:labelFrame];
         self.progressLabel.textAlignment    = NSTextAlignmentRight;
-        self.progressLabel.textColor        = appColor;
+        self.progressLabel.textColor        = self.audioViewAttributes.tintColor;
         self.progressLabel.font             = self.audioViewAttributes.labelFont;
         self.progressLabel.text = durationString;
         [playView addSubview:self.progressLabel];
@@ -279,7 +277,7 @@
         CGFloat width       = size.width - xOffset - rightInset;
         self.progressView.frame = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2,
                                              width, self.progressView.frame.size.height);
-        self.progressView.tintColor = appColor;
+        self.progressView.tintColor = self.audioViewAttributes.tintColor;
         [playView addSubview:self.progressView];
 
         [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:playView isOutgoing:self.appliesMediaViewMaskAsOutgoing];
