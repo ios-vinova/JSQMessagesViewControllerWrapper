@@ -266,12 +266,12 @@
         [playView addSubview:self.progressLabel];
 
         // create a progress bar
-        self.progressView   = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+        self.progressView   = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
         CGFloat xOffset     = self.playButton.frame.origin.x + self.playButton.frame.size.width + self.audioViewAttributes.controlPadding;
         CGFloat width       = size.width - xOffset - rightInset;
-        self.progressView.frame = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2,
-                                             width, self.progressView.frame.size.height);
+        self.progressView.frame     = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2, width, self.progressView.frame.size.height);
         self.progressView.tintColor = self.audioViewAttributes.progressBarColor;
+        [self.progressView setTransform:CGAffineTransformMakeScale(1, 2)];
         [playView addSubview:self.progressView];
 
         [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:playView isOutgoing:self.appliesMediaViewMaskAsOutgoing];
