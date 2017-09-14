@@ -123,7 +123,10 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.messageBubbleTopLabel.font = [UIFont systemFontOfSize:12.0f];
     self.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
-
+    
+    [self.messageBubbleContainerView setBackgroundColor:[UIColor blueColor]];
+    [self.messageBubbleImageView setBackgroundColor:[UIColor greenColor]];
+    
     self.cellBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.cellBottomLabel.textColor = [UIColor lightGrayColor];
 

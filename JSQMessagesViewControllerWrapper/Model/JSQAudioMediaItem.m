@@ -232,13 +232,8 @@
         
         // reverse the insets based on the message direction
         CGFloat leftInset, rightInset;
-        if (self.appliesMediaViewMaskAsOutgoing) {
-            leftInset   = self.audioViewAttributes.controlInsets.left;
-            rightInset  = self.audioViewAttributes.controlInsets.right;
-        } else {
-            leftInset   = self.audioViewAttributes.controlInsets.right - 4;
-            rightInset  = self.audioViewAttributes.controlInsets.left + 4;
-        }
+        leftInset = self.audioViewAttributes.controlInsets.left;
+        rightInset = self.audioViewAttributes.controlInsets.right;
         
         // create container view for the various controls
         CGSize size                 = [self mediaViewDisplaySize];
@@ -248,7 +243,7 @@
         playView.clipsToBounds      = YES;
 
         // create the play button
-        CGRect buttonFrame = CGRectMake(leftInset + 4,
+        CGRect buttonFrame = CGRectMake(leftInset,
                                         (size.height - self.audioViewAttributes.playButtonImage.size.height) / 2,
                                         self.audioViewAttributes.playButtonImage.size.width,
                                         self.audioViewAttributes.playButtonImage.size.height);

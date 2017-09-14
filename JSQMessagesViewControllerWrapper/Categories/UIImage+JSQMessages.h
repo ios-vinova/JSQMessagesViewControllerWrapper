@@ -81,4 +81,9 @@
  */
 + (UIImage *)jsq_defaultPauseImage;
 
+/**
+ *  @return A shape based on maskColor;
+ */
++ (UIImage *)jsq_bubbleDefault;
+
 @end

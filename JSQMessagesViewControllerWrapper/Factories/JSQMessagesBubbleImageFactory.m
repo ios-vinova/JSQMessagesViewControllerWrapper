@@ -55,7 +55,8 @@
 
 - (instancetype)init
 {
-    return [self initWithBubbleImage:[UIImage jsq_bubbleCompactImage] capInsets:UIEdgeInsetsZero];
+//    return [self initWithBubbleImage:[UIImage jsq_bubbleCompactImage] capInsets:UIEdgeInsetsZero];
+    return [self initWithBubbleImage:[UIImage jsq_bubbleDefault] capInsets:UIEdgeInsetsZero];
 }
 
 #pragma mark - Public
@@ -83,16 +84,16 @@
 {
     NSParameterAssert(color != nil);
     
-    UIImage *normalBubble = [self.bubbleImage jsq_imageMaskedWithColor:color];
-    UIImage *highlightedBubble = [self.bubbleImage jsq_imageMaskedWithColor:[color jsq_colorByDarkeningColorWithValue:0.12f]];
+    UIImage *normalBubble       = [self.bubbleImage jsq_imageMaskedWithColor:color];
+    UIImage *highlightedBubble  = [self.bubbleImage jsq_imageMaskedWithColor:[color jsq_colorByDarkeningColorWithValue:0.12f]];
     
     if (flippedForIncoming) {
-        normalBubble = [self jsq_horizontallyFlippedImageFromImage:normalBubble];
-        highlightedBubble = [self jsq_horizontallyFlippedImageFromImage:highlightedBubble];
+        normalBubble        = [self jsq_horizontallyFlippedImageFromImage:normalBubble];
+        highlightedBubble   = [self jsq_horizontallyFlippedImageFromImage:highlightedBubble];
     }
     
-    normalBubble = [self jsq_stretchableImageFromImage:normalBubble withCapInsets:self.capInsets];
-    highlightedBubble = [self jsq_stretchableImageFromImage:highlightedBubble withCapInsets:self.capInsets];
+    normalBubble        = [self jsq_stretchableImageFromImage:normalBubble withCapInsets:self.capInsets];
+    highlightedBubble   = [self jsq_stretchableImageFromImage:highlightedBubble withCapInsets:self.capInsets];
     
     return [[JSQMessagesBubbleImage alloc] initWithMessageBubbleImage:normalBubble highlightedImage:highlightedBubble];
 }

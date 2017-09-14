@@ -80,6 +80,35 @@
     return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_min"];
 }
 
++ (UIImage *)jsq_bubbleDefault
+{
+    UIImage *newImage   = nil;
+    CGRect  imageRect   = CGRectMake(0, 0, 200, 50);
+    CGFloat scale       = 0;
+
+    UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    const CGFloat radius = 6;
+    const CGFloat lineWidth = 10;
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(imageRect, lineWidth / 2, lineWidth / 2)
+                                                    cornerRadius:radius];
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+    path.lineWidth = lineWidth;
+    [path stroke];
+    
+    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+    [path fill];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 + (UIImage *)jsq_bubbleCompactTaillessImage
 {
     return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_min_tailless"];

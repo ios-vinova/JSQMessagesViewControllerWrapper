@@ -58,7 +58,7 @@
 + (void)applyBubbleImageMaskToMediaView:(UIView *)mediaView isOutgoing:(BOOL)isOutgoing
 {
     JSQMessagesMediaViewBubbleImageMasker *masker = [[JSQMessagesMediaViewBubbleImageMasker alloc] init];
-    
+     
     if (isOutgoing) {
         [masker applyOutgoingBubbleImageMaskToMediaView:mediaView];
     }
