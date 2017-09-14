@@ -89,15 +89,7 @@
     UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    const CGFloat radius = 10;
-    const CGFloat lineWidth = 10;
-    
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(imageRect, lineWidth / 2, lineWidth / 2)
-                                                    cornerRadius:radius];
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-    path.lineWidth = lineWidth;
-    [path stroke];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:imageRect cornerRadius: 8];
     
     CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
     [path fill];
