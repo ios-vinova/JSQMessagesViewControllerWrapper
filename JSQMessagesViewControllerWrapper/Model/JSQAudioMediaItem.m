@@ -218,8 +218,7 @@
 
 - (CGSize)mediaViewDisplaySize
 {
-    CGSize _size = [super mediaViewDisplaySize];
-    return CGSizeMake(_size.width, 50.0f);
+    return CGSizeMake(150.0f, 50.0f);
 }
 
 - (UIView *)mediaView
