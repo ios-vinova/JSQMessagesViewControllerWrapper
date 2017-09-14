@@ -311,8 +311,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     [self jsq_updateConstraint:self.textViewTopVerticalSpaceConstraint withConstant:textViewFrameInsets.top];
     [self jsq_updateConstraint:self.textViewBottomVerticalSpaceConstraint withConstant:textViewFrameInsets.bottom];
-    [self jsq_updateConstraint:self.textViewAvatarHorizontalSpaceConstraint withConstant:textViewFrameInsets.right];
-    [self jsq_updateConstraint:self.textViewMarginHorizontalSpaceConstraint withConstant:textViewFrameInsets.left];
+    [self jsq_updateConstraint:self.textViewAvatarHorizontalSpaceConstraint withConstant: 0];
+    [self jsq_updateConstraint:self.textViewMarginHorizontalSpaceConstraint withConstant: 0];
 }
 
 - (void)setMediaView:(UIView *)mediaView
