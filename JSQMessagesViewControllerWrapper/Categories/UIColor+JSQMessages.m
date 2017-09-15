@@ -54,6 +54,14 @@
                            alpha:1.0f];
 }
 
++ (UIColor *)jsq_messageBubblePurpleColor
+{
+    return [UIColor colorWithRed:137.0f/255.0f
+                           green:79.0f/255.0f
+                            blue:191.0f/255.0f
+                           alpha:1];
+}
+
 #pragma mark - Utilities
 
 - (UIColor *)jsq_colorByDarkeningColorWithValue:(CGFloat)value
