@@ -167,6 +167,7 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
 
 - (void)jsq_didReceiveKeyboardDidShowNotification:(NSNotification *)notification
 {
+    NSLog(@"Keyboard did SHOW");
     UIView *keyboardViewProxy = self.textView.inputAccessoryView.superview;
     if ([UIDevice jsq_isCurrentDeviceAfteriOS9]) {
         NSPredicate *windowPredicate = [NSPredicate predicateWithFormat:@"self isMemberOfClass: %@", NSClassFromString(@"UIRemoteKeyboardWindow")];
@@ -192,11 +193,13 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
 
 - (void)jsq_didReceiveKeyboardWillChangeFrameNotification:(NSNotification *)notification
 {
+    NSLog(@"Keyboard will change frame");
     [self jsq_handleKeyboardNotification:notification completion:nil];
 }
 
 - (void)jsq_didReceiveKeyboardDidChangeFrameNotification:(NSNotification *)notification
 {
+    NSLog(@"Keyboard did change change frame");
     [self jsq_setKeyboardViewHidden:NO];
 
     [self jsq_handleKeyboardNotification:notification completion:nil];
@@ -204,6 +207,7 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
 
 - (void)jsq_didReceiveKeyboardDidHideNotification:(NSNotification *)notification
 {
+     NSLog(@"Keyboard did HIDE");
     self.keyboardView = nil;
 
     [self jsq_handleKeyboardNotification:notification completion:^(BOOL finished) {
@@ -222,12 +226,19 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     }
 
     UIViewAnimationCurve animationCurve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+
     NSInteger animationCurveOption = (animationCurve << 16);
 
     double animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
 
-    CGRect keyboardEndFrameConverted = [self.contextView convertRect:keyboardEndFrame fromView:nil];
-
+//    CGRect keyboardEndFrameConverted = [self.contextView convertRect:keyboardEndFrame fromView:nil];
+    
+    CGRect keyboardEndFrameConverted = CGRectMake(0, keyboardEndFrame.origin.y - 64, keyboardEndFrame.size.width, keyboardEndFrame.size.height);
+    
+//    NSLog(@"=>keyboardEndFrame: %@", NSStringFromCGRect(keyboardEndFrame));
+//    NSLog(@"=>After convert: %@", NSStringFromCGRect(keyboardEndFrameConverted));
+//    NSLog(@"=========================>");
+    
     [UIView animateWithDuration:animationDuration
                           delay:0.0
                         options:animationCurveOption
