@@ -233,11 +233,11 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
 
 //    CGRect keyboardEndFrameConverted = [self.contextView convertRect:keyboardEndFrame fromView:nil];
     
-    CGRect keyboardEndFrameConverted = CGRectMake(0, keyboardEndFrame.origin.y - 64, keyboardEndFrame.size.width, keyboardEndFrame.size.height);
+    CGRect keyboardEndFrameConverted = CGRectMake(0, keyboardEndFrame.origin.y - 64 , keyboardEndFrame.size.width, keyboardEndFrame.size.height);
     
-//    NSLog(@"=>keyboardEndFrame: %@", NSStringFromCGRect(keyboardEndFrame));
-//    NSLog(@"=>After convert: %@", NSStringFromCGRect(keyboardEndFrameConverted));
-//    NSLog(@"=========================>");
+    NSLog(@"=>keyboardEndFrame: %@", NSStringFromCGRect(keyboardEndFrame));
+    NSLog(@"=>After convert: %@", NSStringFromCGRect(keyboardEndFrameConverted));
+    NSLog(@"=========================>");
     
     [UIView animateWithDuration:animationDuration
                           delay:0.0
@@ -263,7 +263,7 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
 - (void)jsq_notifyKeyboardFrameNotificationForFrame:(CGRect)frame
 {
     [self.delegate keyboardController:self keyboardDidChangeFrame:frame];
-
+    NSLog(@"Keyboard frame: %@", NSStringFromCGRect(frame));
     [[NSNotificationCenter defaultCenter] postNotificationName:JSQMessagesKeyboardControllerNotificationKeyboardDidChangeFrame
                                                         object:self
                                                       userInfo:@{ JSQMessagesKeyboardControllerUserInfoKeyKeyboardDidChangeFrame : [NSValue valueWithCGRect:frame] }];
