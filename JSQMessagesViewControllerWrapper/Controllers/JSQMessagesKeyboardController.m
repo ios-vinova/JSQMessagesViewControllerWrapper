@@ -182,6 +182,7 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
             }
         }
         self.keyboardView = keyboardViewProxy;
+        NSLog(@"Ketboard proxy frame: %@", NSStringFromCGRect(self.keyboardView.frame));
     }
 
     [self jsq_setKeyboardViewHidden:NO];

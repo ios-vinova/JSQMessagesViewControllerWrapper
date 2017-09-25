@@ -218,7 +218,7 @@
 
 - (CGSize)mediaViewDisplaySize
 {
-    return CGSizeMake(150.0f, 50.0f);
+    return CGSizeMake(180, 60.0f);
 }
 
 - (UIView *)mediaView
