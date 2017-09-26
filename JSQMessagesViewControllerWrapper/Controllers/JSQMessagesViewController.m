@@ -901,10 +901,10 @@ JSQMessagesKeyboardControllerDelegate>
     heightFromBottom = MAX(0.0, heightFromBottom);
 
     [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
-    NSLog(@"Input tool bar boundary: %@", NSStringFromCGRect(self.inputToolbar.frame));
-    NSLog(@"Toolbar bottom layout guide: %lf", _toolbarBottomLayoutGuide.constant);
+    NSLog(@"heightFromBottom: %lf", heightFromBottom);
+    NSLog(@"Input tool bar frame: %@", NSStringFromCGRect(self.inputToolbar.frame));
     NSLog(@"Collection view frame: %@", NSStringFromCGRect(self.collectionView.frame));
-    NSLog(@"Self frame: %@", NSStringFromCGRect(self.view.frame));
+    NSLog(@"Self bounds: %@", NSStringFromCGRect(self.view.bounds));
     NSLog(@"=========================>");
     
 }

@@ -182,7 +182,7 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
             }
         }
         self.keyboardView = keyboardViewProxy;
-        NSLog(@"Ketboard proxy frame: %@", NSStringFromCGRect(self.keyboardView.frame));
+        NSLog(@"Keyboard proxy frame: %@", NSStringFromCGRect(self.keyboardView.frame));
     }
 
     [self jsq_setKeyboardViewHidden:NO];
@@ -233,12 +233,9 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     double animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
 
 //    CGRect keyboardEndFrameConverted = [self.contextView convertRect:keyboardEndFrame fromView:nil];
-    
     CGRect keyboardEndFrameConverted = CGRectMake(0, keyboardEndFrame.origin.y - 64 , keyboardEndFrame.size.width, keyboardEndFrame.size.height);
     
-    NSLog(@"=>keyboardEndFrame: %@", NSStringFromCGRect(keyboardEndFrame));
-    NSLog(@"=>After convert: %@", NSStringFromCGRect(keyboardEndFrameConverted));
-    NSLog(@"=========================>");
+    NSLog(@"=>keyboardEndFrame: %@", NSStringFromCGRect(keyboardEndFrameConverted));
     
     [UIView animateWithDuration:animationDuration
                           delay:0.0

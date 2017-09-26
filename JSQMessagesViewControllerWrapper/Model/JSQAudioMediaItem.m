@@ -240,12 +240,9 @@
         playView.backgroundColor    = self.audioViewAttributes.backgroundColor;
         playView.contentMode        = UIViewContentModeCenter;
         playView.clipsToBounds      = YES;
-
+        
         // create the play button
-        CGRect buttonFrame = CGRectMake(leftInset,
-                                        (size.height - self.audioViewAttributes.playButtonImage.size.height) / 2,
-                                        self.audioViewAttributes.playButtonImage.size.width,
-                                        self.audioViewAttributes.playButtonImage.size.height);
+        CGRect buttonFrame = CGRectMake(leftInset, (size.height - 30) / 2, 30, 30);
         
         self.playButton = [[UIButton alloc] initWithFrame:buttonFrame];
         [self.playButton setImage:self.audioViewAttributes.playButtonImage forState:UIControlStateNormal];
