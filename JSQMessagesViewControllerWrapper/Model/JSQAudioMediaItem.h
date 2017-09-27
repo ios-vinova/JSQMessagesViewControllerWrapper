@@ -30,10 +30,16 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Tells the delegate if the specified `JSQAudioMediaItem` changes the sound category or categoryOptions, or if an error occurs.
  */
+@optional
 - (void)audioMediaItem:(JSQAudioMediaItem *)audioMediaItem
 didChangeAudioCategory:(NSString *)category
                options:(AVAudioSessionCategoryOptions)options
                  error:(nullable NSError *)error;
+
+/**
+ * Injection
+ */
+- (void)audioMediaItemDidChangePlayer: (AVAudioPlayer *)newPlayer;
 
 @end
 
@@ -65,7 +71,7 @@ didChangeAudioCategory:(NSString *)category
  *  Initializes and returns a audio media item having the given audioData.
  *
  *  @param audioData              The data object that contains the audio resource.
- *  @param audioViewConfiguration The view attributes to configure the appearance of the audio media view.
+ *  @param audioViewAttributes The view attributes to configure the appearance of the audio media view.
  *
  *  @return An initialized `JSQAudioMediaItem`.
  *

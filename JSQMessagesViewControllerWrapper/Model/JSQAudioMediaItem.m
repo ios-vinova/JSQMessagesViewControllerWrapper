@@ -169,7 +169,7 @@
         [[AVAudioSession sharedInstance] setCategory:self.audioViewAttributes.audioCategory
                                          withOptions:self.audioViewAttributes.audioCategoryOptions
                                                error:&error];
-        if (self.delegate) {
+        if ([self.delegate respondsToSelector: @selector(audioMediaItem:didChangeAudioCategory:options:error:)]) {
             [self.delegate audioMediaItem:self didChangeAudioCategory:category options:options error:error];
         }
     }
@@ -198,7 +198,9 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player
                        successfully:(BOOL)flag {
-
+    NSLog(@"===>Forced stop player");
+    if (self) { return; }
+    
     // set progress to full, then fade back to the default state
     [self stopProgressTimer];
     self.progressView.progress = 1;
@@ -227,6 +229,10 @@
         if (self.audioData) {
             self.audioPlayer = [[AVAudioPlayer alloc] initWithData:self.audioData error:nil];
             self.audioPlayer.delegate = self;
+            
+            if ([self.delegate respondsToSelector:@selector(audioMediaItemDidChangePlayer:)]) {
+                [self.delegate audioMediaItemDidChangePlayer: self.audioPlayer];
+            }
         }
         
         // reverse the insets based on the message direction
