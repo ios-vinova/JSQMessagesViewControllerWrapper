@@ -8,7 +8,7 @@
 //
 //
 //  GitHub
-//  https://github.com/jessesquires/JSQMessagesViewController
+//  
 //
 //
 //  License
@@ -39,7 +39,7 @@
  */
 @property (weak, nonatomic, readonly) JSQMessagesCollectionView *collectionView;
 
-/**
+/**https://github.com/jessesquires/JSQMessagesViewController
  *  Returns the input toolbar view object managed by this view controller.
  *  This view controller is the toolbar's delegate.
  */

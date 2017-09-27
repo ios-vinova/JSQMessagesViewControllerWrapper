@@ -218,7 +218,7 @@
 
 - (CGSize)mediaViewDisplaySize
 {
-    return CGSizeMake(180, 60.0f);
+    return CGSizeMake(180, 50);
 }
 
 - (UIView *)mediaView
@@ -242,7 +242,8 @@
         playView.clipsToBounds      = YES;
         
         // create the play button
-        CGRect buttonFrame = CGRectMake(leftInset, (size.height - 30) / 2, 30, 30);
+        CGSize playButtonSize = CGSizeMake(40, 40);
+        CGRect buttonFrame = CGRectMake(leftInset, (size.height - playButtonSize.height) / 2, playButtonSize.width, playButtonSize.height);
         
         self.playButton = [[UIButton alloc] initWithFrame:buttonFrame];
         [self.playButton setImage:self.audioViewAttributes.playButtonImage forState:UIControlStateNormal];
@@ -264,7 +265,7 @@
 
         // create a progress bar
         self.progressView   = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
-        CGFloat xOffset     = self.playButton.frame.origin.x + self.playButton.frame.size.width + self.audioViewAttributes.controlPadding;
+        CGFloat xOffset     = self.playButton.frame.origin.x + playButtonSize.width;
         CGFloat width       = size.width - xOffset - rightInset;
         self.progressView.frame     = CGRectMake(xOffset, (size.height - self.progressView.frame.size.height) / 2, width, self.progressView.frame.size.height);
         self.progressView.tintColor = self.audioViewAttributes.progressBarColor;

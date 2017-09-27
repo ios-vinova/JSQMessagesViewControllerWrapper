@@ -117,8 +117,6 @@ static void JSQInstallWorkaroundForSheetPresentationIssue26295020(void) {
 
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
 
-
-
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
 JSQMessagesKeyboardControllerDelegate>
 
@@ -899,14 +897,8 @@ JSQMessagesKeyboardControllerDelegate>
     CGFloat heightFromBottom = CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(keyboardFrame);
 
     heightFromBottom = MAX(0.0, heightFromBottom);
-
-    [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
-    NSLog(@"heightFromBottom: %lf", heightFromBottom);
-    NSLog(@"Input tool bar frame: %@", NSStringFromCGRect(self.inputToolbar.frame));
-    NSLog(@"Collection view frame: %@", NSStringFromCGRect(self.collectionView.frame));
-    NSLog(@"Self bounds: %@", NSStringFromCGRect(self.view.bounds));
-    NSLog(@"=========================>");
     
+    [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
 }
 
 - (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant
