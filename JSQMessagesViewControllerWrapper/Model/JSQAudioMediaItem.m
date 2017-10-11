@@ -199,7 +199,7 @@
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player
                        successfully:(BOOL)flag {
     NSLog(@"===>Forced stop player");
-    if (self) { return; }
+    if (!self) { return; }
     
     // set progress to full, then fade back to the default state
     [self stopProgressTimer];
