@@ -32,7 +32,8 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 @interface JSQMessagesInputToolbar ()
 
 @property (assign, nonatomic) BOOL jsq_isObserving;
-
+@property (assign, nonatomic) BOOL jsq_isActionShowing;
+    
 @end
 
 
@@ -48,10 +49,11 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
     [super awakeFromNib];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
-    self.jsq_isObserving = NO;
-    self.sendButtonOnRight = YES;
+    self.jsq_isObserving        = NO;
+    self.jsq_isActionShowing    = NO;
+    self.sendButtonOnRight      = YES;
 
-    self.preferredDefaultHeight = 96.0f;
+    self.preferredDefaultHeight = 50.0f;
     self.maximumHeight = NSNotFound;
 
     JSQMessagesToolbarContentView *toolbarContentView = [self loadToolbarContentView];
@@ -91,10 +93,24 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 }
 
 #pragma mark - Actions
-
+    
 - (void)jsq_leftBarButtonPressed:(UIButton *)sender
 {
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         if (self.jsq_isActionShowing) {
+                             [self.contentView showDefaultLeftView];
+                         } else {
+                             [self.contentView showFullLeftView];
+                         }
+                         [self layoutIfNeeded];
+                         
+                     } completion:^(BOOL finished) {
+                         self.jsq_isActionShowing = !self.jsq_isActionShowing;
+                     }];
+    
     [self.delegate messagesInputToolbar:self didPressLeftBarButton:sender];
+    
 }
 
 - (void)jsq_rightBarButtonPressed:(UIButton *)sender

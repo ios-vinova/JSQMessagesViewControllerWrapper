@@ -324,4 +324,18 @@
  */
 - (void)didReceiveMenuWillHideNotification:(NSNotification *)notification;
 
+#pragma mark - Hooking
+- (void)textViewDidBeginEditing:(UITextView *)textView;
+    
+- (void)textViewDidChange:(UITextView *)textView;
+    
+- (void)textViewDidEndEditing:(UITextView *)textView;
+    
 @end
+
+
+
+
+
+
+

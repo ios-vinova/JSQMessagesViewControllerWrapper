@@ -106,5 +106,5 @@
  *  @return An initialized `JSQMessagesToolbarContentView` if successful, otherwise `nil`.
  */
 - (JSQMessagesToolbarContentView *)loadToolbarContentView;
-
+    
 @end

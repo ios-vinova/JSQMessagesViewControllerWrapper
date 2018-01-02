@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -32,8 +32,11 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm4-NT-mvr" customClass="JSQMessagesComposerTextView">
-                    <rect key="frame" x="50" y="51" width="305" height="31"/>
+                    <rect key="frame" x="50" y="50" width="305" height="32"/>
                     <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="6Ds-a5-mSI"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -47,7 +50,6 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Myo-1S-Vg1" firstAttribute="leading" secondItem="dm4-NT-mvr" secondAttribute="trailing" constant="8" id="7Ld-5r-Hp3"/>
-                <constraint firstItem="dm4-NT-mvr" firstAttribute="top" secondItem="q0I-xg-08X" secondAttribute="bottom" constant="7" id="9Cb-0l-ePM"/>
                 <constraint firstAttribute="bottom" secondItem="dm4-NT-mvr" secondAttribute="bottom" constant="7" id="CCb-V7-yek"/>
                 <constraint firstAttribute="bottom" secondItem="Myo-1S-Vg1" secondAttribute="bottom" constant="6" id="EaS-Oq-Qp5"/>
                 <constraint firstItem="LEq-G7-jGt" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="LAU-fo-GJJ"/>
